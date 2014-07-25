@@ -1,0 +1,134 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="jquery.mobile-1.4.3.min.css">
+	<link rel="stylesheet" type="text/css"  href="mobiscroll.custom-2.6.2.min.css">
+	<script src="jquery-1.11.0.js"></script>
+	<script src="jquery.mobile-1.4.3.min.js"></script>
+	<script src="mobiscroll.custom-2.6.2.min.js"></script>
+		
+	<link rel="stylesheet" href="jqm-style.css">
+    
+    <script type="text/javascript" language="javascript" >
+    $(document).ready(function () {
+		var date =localStorage.getItem('date');
+		var num =localStorage.getItem('flightNumber');
+		
+		$.getJSON("http://10.1.39.84:8888/acms_service/services/flight/search?limit=15&page=1&date="+ date +"&flightNumber="+ num, function(data) {
+		   
+			$.each(data.flightList, function(i, item) {
+				
+				$("#user_view").append(
+				
+					"<li onclick=search('date','"+item.date+"') ><a href='detail.html' data-transition='slide'><img src=\"./images/airplane_"+item.action+".ico\"/>"+
+					"<h1><span>"+item.flightNumber+"</span></h1>"+
+					"<p>机号：<span>"+item.planeNumber+"</span></p>"+
+					"<p>机型：<span>"+item.planeType+"</span></p>"+
+					"<p>航空公司：<span>"+item.airCode+" "+item.airName+"</span></p>"+
+					"<p>起降时间：<span>"+item.time+"</span></p>"+
+					"<p>任务性质：<span>"+item.flightNature+"</span></p>"+
+					"<img src=\"./images/input_tablet.ico\"/>"+
+					"<img src=\"./images/printer.ico\"/></a></li>"
+				
+				).listview("refresh");
+				  
+			});
+		});			
+	})
+	</script> 
+
+</head>
+
+
+
+<body>
+
+<div style="float:left;width:200px;">
+    
+    	<div data-role="header" data-theme="b">
+            <h1>菜单</h1>  
+    	</div>
+    
+        <ul data-role="listview" data-theme="a" data-divider-theme="a" style="margin-top:0px;" class="nav-search">
+            <li data-filtertext="search">
+                <a href="index.html">AIR SEARCH</a>
+            </li>
+            <li data-filtertext="job list">
+                <a href="air_list.html">AIR LIST</a>
+            </li>
+        </ul>    
+</div>
+ 
+<div id="pageone" style="float:left;width:865px">
+
+	<div data-role="header" data-theme="a">
+        <h1>航班信息</h1>
+    </div>
+    
+    <div data-role="content">
+        <ul data-role="listview" data-inset="true" id="user_view">
+        </ul>
+    </div>
+</div> 
+
+
+           
+<!--
+<div id="pageone" style="float:left;width:865px">
+
+	<div data-role="header" data-theme="a">
+        <h1>航班信息</h1>
+    </div>
+    
+    <div data-role="content">
+        <ul data-role="listview" data-inset="true">
+          <li>
+            <a><img src="./images/airplane_landing.ico">
+                <div style="float:left">
+                    <h2>CA1405</h2>
+                    <p>机号：6227</p>
+                    <p>机型：777</p>
+                    <p>航空公司：CA 中国国际航空公司</p>
+                    <p>起降时间：2013-02-08 12:30:00</p>
+                    <p>任务性质：正常</p>
+                  </div>
+                  <div style="margin: 20pt; left: 1px; top: 150px;">
+                    <img src="./images/printer 48.ico" align="right" height="65">
+                    <img src="./images/input_tablet.ico" align="right">   
+                  </div>
+            </a>
+          </li>
+          <li>
+            <a><img src="./images/airplane_takeoff.ico">
+                <div style="float:left">
+                    <h2>CA1405</h2>
+                    <p>机号：1432</p>
+                    <p>机型：777</p>
+                    <p>航空公司：CA 中国国际航空公司</p>
+                    <p>起降时间：2013-02-08 13:10:00</p>
+                    <p>任务性质：正常</p>
+                </div>    
+                <div style="margin: 20pt; left: 1px; top: 150px;">
+                    <img src="./images/printer 48.ico" align="right" height="65">
+                    <img src="./images/input_tablet.ico" align="right">   
+                </div>  
+            </a>    
+          </li>
+        </ul>
+    </div>
+</div> 
+-->
+
+<!--localStorage页面跳转存储数据 -->
+<script type="text/javascript" language="javascript" >
+ 	function kset(key,value){
+	window.localStorage.setItem(key, value);
+	}
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="jquery.mobile-1.4.3.min.css">
+	<link rel="stylesheet" type="text/css"  href="mobiscroll.custom-2.6.2.min.css">
+	<script src="jquery-1.11.0.js"></script>
+	<script src="jquery.mobile-1.4.3.min.js"></script>
+	<script src="mobiscroll.custom-2.6.2.min.js"></script>
+
+</head>
+
+<body>
+
+<div data-role="page" data-control-title="Detail" id="self_edit_page" data-theme="a">
+	<div data-theme="a" data-role="header" data-position="fixed">
+        <a id="a_back" data-role="button" data-rel="back" href="#" class="ui-btn-left" data-icon="back" data-theme="b">Back</a>
+        <h3>
+          Detail
+        </h3>
+	</div>
+
+	<div data-role="content">
+      	<h5 style="color:red" id="error_msg"></h5>
+        <form method="post" action="#">
+        
+		<div role="main" class="ui-content">
+        
+        <div class="ui-field-contain" data-controltype="textinput" >
+            <label for="jobid">
+                航班日期:
+            </label>
+            <input name="jobid" id="jobid"  type="text">
+        </div>
+    
+        <div class="ui-field-contain" data-controltype="dateinput" >
+            <label for="name">
+                航班号:
+            </label>
+            <input name="name" id="name" value="" readonly = "true"
+            type="text">
+        </div>
+        
+        <div class="ui-field-contain" data-controltype="textinput" >
+            <label for="status">
+                机号:
+            </label>
+            <input name="status" id="status" value="" readonly = "true"
+            type="text">
+        </div>
+        
+        <div class="ui-field-contain" data-controltype="textinput" >
+            <label for="type">
+                航空公司:
+            </label>
+            <input name="type" id="type" value="" readonly = "true"
+            type="text">
+        </div>
+        
+        <div class="ui-field-contain" data-controltype="textinput" data-role="fieldcontain">
+            <label for="bspCode">
+                机型:
+            </label>
+            <input name="bspCode" id="bspCode" value="" type="text" readonly = "true">
+    	</div>
+        
+        
+        
+        	<p>多行的三列布局：</p>
+            
+       		<div class="ui-grid-d">
+            	<div class="ui-block-a" style="border: 1px solid black;"><span>Some Text</span></div>
+                <div class="ui-block-b" style="border: 1px solid black;"><span>Some Text</span></div>
+                <div class="ui-block-c" style="border: 1px solid black;"><span>Some Text</span></div>
+                <div class="ui-block-e" style="border: 1px solid black;"><span>Some Text</span></div>
+                <div class="ui-block-f" style="border: 1px solid black;"><span>Some Text</span></div>
+                <div class="ui-block-a" style="border: 1px solid black;"><span>Some Text</span></div>
+                <div class="ui-block-b" style="border: 1px solid black;"><span>Some Text</span></div>
+                <div class="ui-block-a" style="border: 1px solid black;"><span>Some Text</span></div>
+         	</div>
+
+
+
+
+
+
+</body>
+</html>

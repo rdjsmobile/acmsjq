@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="jquery.mobile-1.4.3.min.css">
+	<link rel="stylesheet" type="text/css"  href="mobiscroll.custom-2.6.2.min.css">
+	<script src="jquery-1.8.3.min.js"></script>
+	<script src="jquery.mobile-1.4.3.min.js"></script>
+	<script src="mobiscroll.custom-2.6.2.min.js"></script>
+		
+	<link rel="stylesheet" href="jqm-style.css">
+
+</head>
+<body>
+
+<div data-role="page" id="pageone"  data-theme="a" class="ui-responsive-panel">
+
+  <div data-role="header" data-theme="b">
+  	<h1>查询航班</h1>
+	
+	<a href="#add-form" data-icon="plus" data-iconpos="notext" data-theme="a">Add</a>
+  </div>
+
+  <div data-role="content">
+  	<form method="post" action="list.html" data-transition='flip' data-ajax='false'>
+ 	<div data-role="fieldcontain">
+    
+    	<div data-role="fieldcontain" class="airDate" style="display:inline-block;margin: 0pt; left: 1px; top: 0px;">      	
+             <label for="airDate">航班日期</label>
+             <input type="text" data-role="datebox" id="airDateInput" name="airDateInput"/>
+             <input type="submit" id='beforeDay' data-inline="true" value="上一天" data-mini="true"
+        </div>
+        
+     <style>   
+        body{font-family:Arial;font-size:12px;text-align:center;}
+		.inner{overflow:hidden;}
+		.inner div{padding:1px;}
+		.iText input {width: 99%;}
+		.btn input{float:left;width:100px;padding:1px 10px;font-size:12px;border:1px solid;}
+		#formwrapper{width:95%;margin:15px auto;padding:20px;text-align:left;border:1px solid;}
+		fieldset{padding:10px;margin-top:5px;border:1px solid;}
+		fieldset legend{font-weight:bold;padding:3px 20px 3px 20px;border:1px solid;}
+		fieldset div{float:left;margin-bottom:2px;}
+	</style>
+        
+    
+        <div id="formwrapper">  
+            <fieldset><label>航班日期</label>
+            <div class="inner">
+            <div class="iText"><input type="text" id="airDateInput1" data-role="datebox" name="airDateInput1"></div>
+            <div class="btn"><input type="button"  name="beforeDay" value="上一天"></div> 
+            </div>
+            </fieldset>           
+        </div>
+      
+        <div data-role="fieldcontain" 
+            <label for="name">航班号</label>
+            <input type="text" name="text" id="airNum" placeholder="....." data-theme="a">
+            <br><br>
+        </div>
+    
+    	<a href="air_list.html" data-role="button" data-inline="true">航班查询</a>
+  		<!--<input type="submit" id='sum' data-inline="true" value="航班查询" onClick="kset()">-->
+  		<input type="reset" id='reset' data-inline="true" value="reset" >  
+    </div>     
+  	</form>   
+  </div>
+    
+    <!-- /jqm-footer -->
+    <div data-role="footer" class="jqm-footer" data-position="fixed" data-theme="a">
+		<p class="jqm-version"></p>
+		<p>&copy; bsp mobile vesion：1.0</p>
+	</div>
+ 
+    
+    <!-- /导航栏内的样式 -->
+<style>
+	.nav-search .ui-btn-up-a {
+		background-image:none;
+		background-color:#333333;
+	}
+	.nav-search .ui-btn-inner {
+		border-top: 1px solid #888;
+		border-color: rgba(255, 255, 255, .1);
+	}
+	#nav-panel{
+		border-top: 1px solid #888;
+		border-color: rgba(255, 0, 0, .1);
+	}
+</style>
+
+<!-- /导航栏内显示的内容 -->
+<div data-role="panel" data-position="left" data-position-fixed="false" data-display="overlay" id="nav-panel" data-theme="a" position="fixed" style="width:300px;">
+
+	<ul data-role="listview" data-theme="a" data-divider-theme="a" style="margin-top:-16px;		" class=		"nav-search">
+		<li data-icon="delete" style="background-color:#111;">
+			<a href="#" data-rel="close">Close menu</a>
+		</li>
+		<li data-filtertext="search">
+			<a href="search.html">JOB QUERY</a>
+		</li>
+		<li data-filtertext="job list">
+			<a href="list.html">JOB LIST</a>
+		</li>
+    	<li data-filtertext="job detail">
+			<a href="detail.html">JOB DETAIL</a>
+		</li>
+	</ul>
+    
+</div>
+
+
+<!-- /添加用户的样式 -->
+<style>
+	.userform { padding:.8em 1.2em; }
+	.userform h2 { color:#555; margin:0.3em 0 .8em 0; padding-bottom:.5em; border-bottom:1px solid rgba(0,0,0,.1); }
+	.userform label { display:block; margin-top:1.2em; }
+	.switch .ui-slider-switch { width: 6.5em !important }
+	.ui-grid-a { margin-top:1em; padding-top:.8em; margin-top:1.4em; border-top:1px solid rgba(0,0,0,.1); }
+</style>
+
+<!-- /添加用户的内容 -->
+<div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="add-form" data-theme="a" style="width:100px;">
+	
+	<form class="userform">
+	<h2>Create new user</h2>
+	<label for="name">Name</label>
+	<input type="text" name="name" id="name" value="" data-clear-btn="true" data-mini="true">
+
+	<label for="email">Email</label>
+	<input type="email" name="email" id="status" value="" data-clear-btn="true" data-mini="true">
+
+	<label for="password">Password:</label>
+	<input type="password" name="password" id="password" value="" data-clear-btn="true" autocomplete="off" data-mini="true">
+
+	<div class="ui-grid-a">
+    	<div class="ui-block-a"><a href="#" data-rel="close" data-role="button" data-theme="a" data-mini="true">Save</a></div>
+		<div class="ui-block-b"><a href="#" data-rel="close" data-role="button" data-theme="a" data-mini="true">Cancel</a></div>		
+	</div>
+	</form>
+			
+</div>
+  	
+</div>
+
+
+
+<script type="text/javascript" language="javascript" >
+$(function(){
+	$("body").bind("swiperight",function(){
+		 $('#menu').click();
+	});
+});
+</script>
+
+<script type="text/javascript" language="javascript" >
+$(document).ready(function(){
+	$("#other").hide();
+	$("#switch").change(function(){
+		
+		var checkValue=$("#switch").val();
+		if(checkValue=='off' || checkValue==''){
+			$("#other").hide();
+			}
+		else{
+			$("#other").show();}
+		});
+	})
+</script>
+
+<script type="text/javascript" language="javascript" >
+$('input:jqmData(role="datebox")').mobiscroll().date({
+		preset: 'date',
+	    theme: 'android',   
+        display: 'bubble',
+        mode: 'scroller',
+        showNow: true,
+		nowText: "today",
+		showOnFocus: true,
+		dateFormat: "yy-mm-dd",
+		dateOrder: "yymmdd",
+		height: 45,
+		width: 90,
+		rows: 3
+	});</script>
+    
+    <script type="text/javascript" language="javascript" >
+ function kset(){
+	window.localStorage.clear();
+	var id =$("#name").val();
+	var sta =$("#status").val();
+	var bspCode =$("#code").val() == null ? "" : $("#code").val();
+	var type =$("#type").val();
+	var startTime =$("#startTime").val();
+	var endTime =$("#endTime").val();
+	window.localStorage.setItem('jobId', id);
+	window.localStorage.setItem('status', sta);
+	window.localStorage.setItem('bspcode', bspCode);
+	window.localStorage.setItem('type', type);
+	window.localStorage.setItem('startTime', startTime);
+	window.localStorage.setItem('endTime', endTime);
+	window.localStorage.setItem("pageNum",1);
+	$.ajax(
+	)
+}</script>
+
+<script>
+  <!--
+$(document).bind("mobileinit", function(){
+});
+
+$( function() {
+    //默认设置，一个小圈圈在转
+
+    //小圈子外围加矩形的背景
+    $('#123').live( 'tap', function() {
+	$.mobile.loadingMessageTextVisible = true;
+	$.mobile.loadingMessageTheme = 'a';
+        $.mobile.showPageLoadingMsg();
+    } );
+    //矩形背景样式为e
+    $('#sum').live( 'tap', function() {
+	$.mobile.loadingMessageTextVisible = true;
+	$.mobile.loadingMessageTheme = 'e';
+        $.mobile.showPageLoadingMsg();
+    } );
+    //小圈子下面加上文字
+    $('#customText').live( 'tap', function() {
+	$.mobile.loadingMessageTextVisible = true;
+        $.mobile.showPageLoadingMsg( 'a', "Please wait..." );
+    } );
+    //只有文字，没有小圈子在转
+    $('#noSpinner').live( 'tap', function() {
+	$.mobile.loadingMessageTextVisible = true;
+        $.mobile.showPageLoadingMsg( 'a', "Please wait...", true );
+    } );
+
+  } );
+  -->
+</script>
+
+
+</body>
+</html>
+

@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="jquery.mobile-1.4.3.min.css">
+	<link rel="stylesheet" type="text/css"  href="mobiscroll.custom-2.6.2.min.css">
+	<script src="jquery-1.11.0.js"></script>
+	<script src="jquery.mobile-1.4.3.min.js"></script>
+	<script src="mobiscroll.custom-2.6.2.min.js"></script>
+		
+	<link rel="stylesheet" href="jqm-style.css">
+    
+    
+</head>
+
+<body>
+    
+    <div style="float:left;width:200px;">
+    
+    	<div data-role="header" data-theme="b">
+            <h1>菜单</h1>  
+    	</div>
+    
+        <ul data-role="listview" data-theme="a" data-divider-theme="a" style="margin-top:0px;" class="nav-search">
+            <li data-filtertext="search">
+                <a href="index.html">AIR SEARCH</a>
+            </li>
+            <li data-filtertext="job list">
+                <a href="air_list.html">AIR LIST</a>
+            </li>
+        </ul>
+        
+    </div>
+   
+<div  id="pageone"  class="ui-responsive-panel" style="float:left;width:865px">
+
+    <div data-role="header" data-theme="a">
+        <h1>Welcome</h1>
+        <a href="#search_air" data-icon="search" data-iconpos="notext" class="ui-btn-right">Search</a>
+    </div>
+    
+    
+    <div data-role="content">  
+    
+    	<div data-role="panel" id="search_air" data-position="right" data-position-fixed="false"  data-display="overlay" data-theme="a" style="width:350px;">     
+        
+       	<div data-role="header" data-theme="b" style="margin-top:-16px;margin-left:-16px;margin-right:-16px;">
+        	<h1>查询航班</h1>
+    	</div>
+          
+        <div id="formwrapper">  
+            <fieldset class="ui-grid-b">
+                <div class="ui-block-a" style="margin-top:10px;">
+                    <label data-mini="true">航班日期</label>
+                </div>
+                <div class="ui-block-b">
+                    <input type="text" id="airDateInput1" data-role="datebox" name="airDateInput" data-mini="true"/>
+                </div>
+                <div class="ui-block-c">
+                    <input type="button" id="beforeDay1" name="beforeDay" value="上一天" data-mini="true" />
+                </div> 
+                
+                <div class="ui-block-a" style="margin-top:10px;">
+                	<label for="name">航班号</label>
+                </div>
+                <div class="ui-block-b">
+            		<input type="text" name="text" id="airNum" placeholder="....." data-mini="true"/>
+                </div>
+            </fieldset>           
+        </div>
+    
+  		<input type="submit" id='sum' data-inline="true" value="航班查询" data-mini="true" onClick="searchList()"/>
+  		<input type="reset" id='reset' data-inline="true" value="reset" data-mini="true"/>  
+    </div> 
+ 
+  </div>
+</div>
+
+
+<script type="text/javascript" language="javascript" >
+ function searchList(){
+	window.localStorage.clear();
+	var date =$("#airDateInput1").val();
+	var num =$("#airNum").val();
+	window.localStorage.setItem('date', date);
+	window.localStorage.setItem('flightNumber', num);
+	window.location = "air_list.html"
+	$.ajax()
+}</script>
+
+<!--为航班日期设置初始值 -->
+<script type="text/javascript" language="javascript" >
+$('input:jqmData(role="datebox")').mobiscroll().date({
+		preset: 'date', //日期形式 date|datetime|time 
+	    theme: 'android',   
+        display: 'bubble',
+        mode: 'scroller',
+        showNow: true,
+		nowText: "today",
+		showOnFocus: true,
+		dateFormat: "yy-mm-dd",
+		dateOrder: "yymmdd",
+		height: 45,
+		width: 90,
+		rows: 3
+	});
+</script>
+
+<!--为航班日期设置默认时间 -->
+<script type="text/javascript" language="javascript" >
+$(document).on("pageinit",function(){
+	var a = new Date();
+	var m = a.getMonth() + 1;
+	if(m.toString().length == 1){
+		m='0'+m;
+	}
+	var d = a.getDate();
+	if(d.toString().length == 1){
+		d='0'+d;
+	}
+	var temp = a.getFullYear() + "-" + m + "-" + d;
+    $("#airDateInput1").val(temp);                
+});
+</script>
+ 
+<!--计算上一天的航班日期-->
+<script type="text/javascript" language="javascript" >
+$("#beforeDay1").on("click",(function(){
+	var airDate =$("#airDateInput1").val();
+	//错误处理
+	if(airDate == ""){
+		alert("请先选择航班日期！");
+	}
+	else{
+		var a = new Date(airDate)
+		a = a.valueOf()
+		a = a - 1 * 24 * 60 * 60 * 1000
+		a = new Date(a);
+		var m = a.getMonth() + 1;
+		if(m.toString().length == 1){
+			m='0'+m;
+		}
+		var d = a.getDate();
+		if(d.toString().length == 1){
+			d='0'+d;
+		}
+		var temp = a.getFullYear() + "-" + m + "-" + d;
+		$("#airDateInput1").val(temp);
+	}
+}));
+</script>
+    
+<!-- tap事件替换onclick -->
+<script type="text/javascript" language="javascript" >
+$(document).on("pageinit","#pageone",function(){
+  $("input").on("tap",function(){
+    $(this).hide();
+  });                       
+});
+</script>
+
+
+    
+</body>
+</html>
