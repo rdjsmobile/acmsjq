@@ -9,6 +9,7 @@
 	<script src="jquery-1.11.0.js"></script>
 	<script src="jquery.mobile-1.4.3.min.js"></script>
 	<script src="mobiscroll.custom-2.6.2.min.js"></script>
+    <script src="config.js"></script>
 		
 	<link rel="stylesheet" href="jqm-style.css">
     
@@ -17,7 +18,7 @@
 
 <body>
     
-    <div style="float:left;width:200px;">
+    <div id="menu_welcome" data-hash="false">
     
     	<div data-role="header" data-theme="b">
             <h1>菜单</h1>  
@@ -25,10 +26,10 @@
     
         <ul data-role="listview" data-theme="a" data-divider-theme="a" style="margin-top:0px;" class="nav-search">
             <li data-filtertext="search">
-                <a href="index.html">AIR SEARCH</a>
+                <a href="index.html" data-panel="menu_welcome">AIR SEARCH</a>
             </li>
             <li data-filtertext="job list">
-                <a href="air_list.html">AIR LIST</a>
+                <a href="air_list.html" data-panel="menu_welcome">AIR LIST</a>
             </li>
         </ul>
         
@@ -44,7 +45,7 @@
     
     <div data-role="content">  
     
-    	<div data-role="panel" id="search_air" data-position="right" data-position-fixed="false"  data-display="overlay" data-theme="a" style="width:350px;">     
+    	<div data-role="panel" id="search_air" data-position="right" data-position-fixed="false"  data-display="overlay" data-theme="a" >     
         
        	<div data-role="header" data-theme="b" style="margin-top:-16px;margin-left:-16px;margin-right:-16px;">
         	<h1>查询航班</h1>
@@ -153,6 +154,24 @@ $("#beforeDay1").on("click",(function(){
 	}
 }));
 </script>
+
+<!-- 设置查询框的宽度 -->
+<script type="text/javascript" language="javascript">
+$(document).ready(function() {
+	//设置查询框的宽度
+	var searcha = $('#search_air');
+	searcha.attr("style", "width:" + global_menuWidth + "px;");
+	
+	//设置导航栏的样式和宽度
+	var menuw = $('#menu_welcome');
+	menuw.attr("style", "float:left;width:" + global_menuWidth + "px;");
+	
+	//设置主页面的样式和宽度
+	var pageOne = $('#pageone');
+	pageOne.attr("style", "float:left;width:" + global_windowWidth + "px;");
+});
+</script>
+
     
 <!-- tap事件替换onclick -->
 <script type="text/javascript" language="javascript" >

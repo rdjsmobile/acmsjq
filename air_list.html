@@ -9,6 +9,7 @@
 	<script src="jquery-1.11.0.js"></script>
 	<script src="jquery.mobile-1.4.3.min.js"></script>
 	<script src="mobiscroll.custom-2.6.2.min.js"></script>
+    <script src="config.js"></script>
 		
 	<link rel="stylesheet" href="jqm-style.css">
     
@@ -23,15 +24,15 @@
 				
 				$("#user_view").append(
 				
-					"<li class='testLi'><a data-transition='slide'><img align='middle' src=\"./images/airplane_"+item.action+".ico\" />"+
-					"<h1><span class='flightNumberSpan'>"+item.flightNumber+"</span></h1>"+
-					"<p>机号：<span class='planeNumberSpan'>"+item.planeNumber+"</span></p>"+
-					"<p>机型：<span class='planeTypeSpan'>"+item.planeType+"</span></p>"+
-					"<p>航空公司：<span class='airNameSpan'>"+item.airCode+" "+item.airName+"</span></p>"+
-					"<p>起降时间：<span class='timeSpan'>"+item.time+"</span></p>"+
-					"<p>任务性质：<span>"+item.flightNature+"</span></p>"+
-					"<img align='left' src='./images/input_tablet.ico'/>"+
-					"<img src=\"./images/printer.ico\"/></a></li>" //双引号前加\的作用是转义
+					"<li class='testLi' style='background-color:#e9e9e9;'><div><a data-transition='slide'><div style='float:left;margin-top:47px;'><img align='middle' src=\"./images/airplane_"+item.action+".ico\" /></div>"+
+					"<div style='float:left;margin-left:20px;'><h1 style='color:black'><span class='flightNumberSpan'>"+item.flightNumber+"</span></h1>"+
+					"<p style='color:black'>机号：<span class='planeNumberSpan'>"+item.planeNumber+"</span></p>"+
+					"<p style='color:black'>机型：<span class='planeTypeSpan'>"+item.planeType+"</span></p>"+
+					"<p style='color:black'>航空公司：<span class='airNameSpan'>"+item.airCode+" "+item.airName+"</span></p>"+
+					"<p style='color:black'>起降时间：<span class='timeSpan'>"+item.time+"</span></p>"+
+					"<p style='color:black'>任务性质：<span>"+item.flightNature+"</span></p></div>"+
+					"<div style='float:left;margin-left:550px;margin-top:35px;'><a href='detail.html'><img align='left' src='./images/input_tablet.ico'/></a></div>"+
+					"<div style='float:right;margin-right:50px;margin-top:35px;'><img src=\"./images/printer.ico\" height='66'/><div></a></div></li>" //双引号前加\的作用是转义
 				
 				).listview("refresh");
 				  
@@ -61,7 +62,7 @@
 
 <body>
 
-<div style="float:left;width:200px;">
+<div id="menu_airInfo">
     
     	<div data-role="header" data-theme="b">
             <h1>菜单</h1>  
@@ -77,14 +78,14 @@
         </ul>    
 </div>
  
-<div id="pageone" style="float:left;width:865px">
+<div id="pageTwo" >
 
 	<div data-role="header" data-theme="a">
         <h1>航班信息</h1>
     </div>
     
-    <div data-role="content">
-        <ul data-role="listview" data-inset="true" id="user_view">
+    <div data-role="content" >
+        <ul data-role="listview" data-inset="true" id="user_view" >
         </ul>
     </div>
 </div> 
@@ -99,6 +100,19 @@
 		window.localStorage.setItem(key4, value4);
 		window.localStorage.setItem(key5, value5);
 	}
+</script>
+
+<!-- 设置页面的的样式和宽度 -->
+<script type="text/javascript" language="javascript">
+$(document).ready(function() {
+	//设置导航栏的样式和宽度
+	var menua = $('#menu_airInfo');
+	menua.attr("style", "float:left;width:" + global_menuWidth + "px;");
+	
+	//设置主页面的样式和宽度
+	var pageTwo = $('#pageTwo');
+	pageTwo.attr("style", "float:left;width:" + global_windowWidth + "px;");
+});
 </script>
  
 </body>
