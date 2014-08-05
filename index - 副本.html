@@ -1,0 +1,121 @@
+<!DOCTYPE html> 
+<html> 
+	<head> 
+	<title>Jquery Mobile Splitview</title> 
+  <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+		<link rel="stylesheet" href="jquery.mobile.splitview.css" />
+	<link rel="stylesheet" href="jquery.mobile-1.4.3.css" />
+
+  <link rel="stylesheet"  href="jquery.mobile.grids.collapsible.css" />
+  <script type="text/javascript" src="../vendor/jquery-1.7.1.js"></script>
+  <script type="text/javascript" src="jquery.mobile.splitview.js"></script>
+  <script type="text/javascript" src="../jquery-mobile/jquery.mobile.js"></script>
+</head> 
+
+  <body> 
+
+    <div data-role="panel" data-id="menu" data-hash="crumbs" data-context="a#default">
+      <!-- Start of first page -->
+      <div data-role="page" id="main" data-hash="false">
+
+      	<div data-role="header" data-position="fixed">
+      		<h1>Main</h1>
+      	</div><!-- /header -->
+
+      	<div data-role="content">	
+      		<ul data-role="listview">
+            
+            <li><a href="#aboutus" data-panel="main" data-transition="slide">Credits</a></li>
+            <li><a href="#aboutsv" data-panel="main" data-transition="slide">Source@Github</a></li>
+          </ul>
+      	</div><!-- /content -->
+
+      	<div data-role="footer" data-position="fixed" data-id="ew-footer">
+      		<div data-role="navbar">
+            <ul>
+              <li><a href="#main" class="ui-btn-active" data-transition="slideup">Main</a></li>
+              <li><a href="#demo" data-transition="slideup">Demos</a></li>
+            </ul>
+          </div><!-- /navbar -->
+          <h2 class="ui-splitview-hidden">Engineworks &copy CS8</h2>
+      	</div><!-- /footer -->
+      </div><!-- /page -->
+
+
+
+
+
+    </div><!-- panel menu -->
+
+    <div data-role="panel" data-id="main">
+      <!-- Start of 6th page -->
+      <div data-role="page" id="aboutus">
+
+        <div data-role="header">
+          <h1>Test</h1>
+        </div><!-- /header -->
+
+        <div data-role="content"> 
+          <p>We first started to look into jQuery Mobile when we had a project that needed us to build web applications that would work great on all platforms: Desktop, Tablets(iPad), and Mobile</p>
+
+          <p>Although jQuery Mobile was still in alpha 1 at that time, we felt that it provided the most in terms of what we needed. so we set ahead trying to see if we could help others who had the same interest as we did: get it to work well on the Desktop/iPad - as a SplitView</p>
+
+          <p>A few months later, around alpha 3, we finally got our first splitview to work, and thanks to support from jQuery Mobile's own core team members, Splitview for jQMobile is what it is today</p>
+
+          <p>There are still a lot of things to do, but we hope you enjoy using this plugin, and contribute back to it by reporting bugs, requesting features, and best of all, submitting your own code contributions. Thanks!</p>
+        
+          <p><b>NOTE:</b> keep in mind that I added some namespacing to event handlers in jQMobile core. use the version of jQuerymobile found in the experiments/splitview/ folder of my fork.</p>
+        </div><!-- /content -->
+
+        <div data-role="footer" data-position="fixed" data-id="ew-footer" class="ui-splitview-hidden">
+          <div data-role="navbar">
+            <ul>
+              <li><a href="#main" class="ui-btn-active" data-transition="slideup">Main</a></li>
+              <li><a href="#demo" data-transition="slideup">Demos</a></li>
+            </ul>
+          </div><!-- /navbar -->
+          <h2>Engineworks &copy CS8</h2>
+        </div><!-- /footer -->
+      </div><!-- /page -->
+
+
+      <!-- Start of 6th page -->
+      <div data-role="page" id="aboutsv">
+
+        <div data-role="header">
+          <h1>About SplitView</h1>
+        </div><!-- /header -->
+
+        <div data-role="content"> 
+          <p>We first started to look into jQuery Mobile when we had a project that needed us to build web applications that would work great on all platforms: Desktop, Tablets(iPad), and Mobile</p>
+
+          <p>Although jQuery Mobile was still in alpha 1 at that time, we felt that it provided the most in terms of what we needed. so we set ahead trying to see if we could help others who had the same interest as we did: get it to work well on the Desktop/iPad - as a SplitView</p>
+
+          <p>A few months later, around alpha 3, we finally got our first splitview to work, and thanks to support from jQuery Mobile's own core team members, Splitview for jQMobile is what it is today</p>
+
+          <p>There are still a lot of things to do, but we hope you enjoy using this plugin, and contribute back to it by reporting bugs, requesting features, and best of all, submitting your own code contributions. Thanks!</p>
+        
+          <p><b>NOTE:</b> keep in mind that I added some namespacing to event handlers in jQMobile core. use the version of jQuerymobile found in the experiments/splitview/ folder of my fork.</p>
+        </div><!-- /content -->
+
+        <div data-role="footer" data-position="fixed" data-id="ew-footer" class="ui-splitview-hidden">
+          <div data-role="navbar">
+            <ul>
+              <li><a href="#main" class="ui-btn-active" data-transition="slideup">Main</a></li>
+              <li><a href="#demo" data-transition="slideup">Demos</a></li>
+            </ul>
+          </div><!-- /navbar -->
+          <h2>Engineworks &copy CS8</h2>
+        </div><!-- /footer -->
+      </div><!-- /page -->
+
+
+
+
+
+
+    </div><!-- panel main -->
+
+
+  </body>
+</html>
