@@ -1,0 +1,522 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="jquery.mobile-1.4.3.min.css">
+	<link rel="stylesheet" type="text/css"  href="mobiscroll.custom-2.6.2.min.css">
+	<script src="jquery-1.11.0.js"></script>
+	<script src="jquery.mobile-1.4.3.min.js"></script>
+	<script src="mobiscroll.custom-2.6.2.min.js"></script>
+    <script src="config.js"></script>
+    
+    
+    <style>
+		/*表头部分样式*/
+		.th-groups th {
+			background-color: rgba(0,0,0,0.07);
+			border-right: 1px solid #fff;
+			text-align: center;
+		}
+		
+		.th-groups th {
+			background-color: rgba(0,0,0,0.07);
+			border-right: 1px solid #fff;
+			text-align: center;
+		}
+		@media screen and (max-width: 72em) {
+			/* Style the first cell in a row in a dark bar */
+			.financial-table-reflow th: first-child {
+				color: #fff;
+				background-color: #555;
+				font-size: 1.2em;
+				padding: .3em .6em .3em .6em;
+				-webkit-text-shadow: none;
+				-moz-text-shadow: none;
+				text-shadow: none;
+			}
+			/* Hide the label in the first cell */
+			.financial-table-reflow th: first-child .ui-table-cell-label {
+				display: none;
+			}
+			/* Make the grouped header labels green */
+			.ui-table-reflow th .ui-table-cell-label-top,
+			.ui-table-reflow td .ui-table-cell-label-top {
+				font-weight: bold;
+				color: #319B47;
+				font-size: 1.1em;
+			}
+		}
+		/* Media query to show as a standard table at wider widths, must be very wide for this table */
+		@media screen and (min-width: 72em) {
+			/* Show the table header rows */
+			.financial-table-reflow td,
+			.financial-table-reflow th,
+			.financial-table-reflow tbody th,
+			.financial-table-reflow tbody td,
+			.financial-table-reflow thead td,
+			.financial-table-reflow thead th {
+				display: table-cell;
+				margin: 0;
+			}
+			/* Hide the labels in each cell */
+			.financial-table-reflow td .ui-table-cell-label,
+			.financial-table-reflow th .ui-table-cell-label {
+				display: none;
+			}
+		}
+		/* Hack to make IE9 and WP7.5 treat cells like block level elements */
+		/* Applied in a max-width media query up to the table layout breakpoint so we don't need to negate this*/
+		@media (max-width: 72em) {
+			.financial-table-reflow td,
+			.financial-table-reflow th {
+				width: 100%;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				float: left;
+				clear: left;
+			}
+		}
+	</style>
+       
+    
+
+</head>
+
+<body>
+
+<div id="self_edit_page">
+	<div data-theme="a" data-role="header" >
+        <h3>Detail</h3>
+	</div>
+
+	<div data-role="content">
+     
+		<div role="main" class="ui-content">       
+            <fieldset class="ui-grid-b">      
+                <div class="ui-block-a" data-controltype="textinput" >
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a" style="margin-top:15px;margin-left:-45px;">
+                            <label for="airDate" dir="rtl">:航班日期</label>
+                        </div>
+                        <div class="ui-block-b">
+                            <input name="airDate" id="airDate" disabled="true" type="text">
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="ui-block-b" data-controltype="dateinput" >
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a" style="margin-top:15px;margin-left:-45px;">
+                            <label for="flightNumber" dir="rtl">:航班号</label>
+                        </div>
+                        <div class="ui-block-b">
+                            <input name="flightNumber" id="flightNumber" value="" disabled="true" type="text">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ui-block-c" data-controltype="textinput" >
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a" style="margin-top:15px;margin-left:-45px;">
+                            <label for="planeNumber" dir="rtl">:机号</label>
+                        </div>
+                        <div class="ui-block-b">
+                            <input name="planeNumber" id="planeNumber" value="" disabled="true" type="text">
+                        </div>
+                     </div>
+                </div>
+                
+                <div class="ui-block-a" data-controltype="textinput" >
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a" style="margin-top:15px;margin-left:-45px;">
+                            <label for="airName" dir="rtl">:航空公司</label>
+                        </div>
+                        <div class="ui-block-b">
+                            <input name="airName" id="airName" value="" disabled="true" type="text">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="ui-block-b" ></div>
+                
+                <div class="ui-block-c" data-controltype="textinput">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a" style="margin-top:15px;margin-left:-45px;">
+                            <label for="planeType" dir="rtl">:机型</label>
+                        </div>
+                        <div class="ui-block-b">
+                            <input name="planeType" id="planeType" value="" disabled="true" type="text" >
+                        </div>
+                    </div>
+                </div>
+                          
+            </fieldset>
+        </div>
+    
+        <div id="air_table" data-demo-html="true" data-demo-css="true" align="center">
+            <table data-role="table" id="financial-table-reflow" data-mode="reflow" class="financial-table-reflow table-stroke">
+                <thead>
+                    <tr class="th-groups">
+                        <th colspan="1" style="width:20%">服务项目</th>
+                        <th colspan="1" style="width:30%">起始时间</th>
+                        <th colspan="1" style="width:30%">终止时间</th>
+                        <th colspan="1" style="width:10%">使用数量</th>
+                        <th colspan="1" style="width:10%">单位</th>
+                    </tr>
+                </thead>
+                
+                <tbody id="mainbody">
+        
+                </tbody>
+            </table>
+        </div>
+
+        <div class="ui-grid-b" align="center">
+            <div class="ui-block-a" style="margin-left:20px;">
+                <a id="go_add" href="#add_panel"><img src="./images/plus.ico"/></a>
+            </div>
+            <div class="ui-block-b" style="margin-left:-60px;" id="edit">
+                <a id="go_edit" href="#add_panel"><img src="./images/edit.png" height="33"/></a>
+            </div>
+            <div class="ui-block-c" style="margin-left:-40px;" id="delete">
+                <img id="deleteButton" src="./images/delete.jpg" height="32"/>
+            </div>
+         </div>
+         
+         <div class="ui-grid-b" align="center">
+            <div class="ui-block-a" style="margin-left:20px;">
+                <a id="a_back" data-rel="back" href="#" data-icon="back" ><img src="./images/back.ico"/></a>
+            </div>
+            <div class="ui-block-b" style="margin-left:-60px;">
+                <img src="./images/save.ico" height="44"/>
+            </div>
+            <div class="ui-block-c" style="margin-left:-40px;">
+                <img src="./images/printer.ico" height="48"/>
+            </div>
+         </div>
+    
+    
+        <div data-role="panel" id="add_panel" data-position="right" data-position-fixed="false"  data-display="overlay" data-theme="a" data-flag="add">     
+            
+            <div data-role="header" data-theme="b" style="margin-top:-16px;margin-left:-16px;margin-right:-16px;">
+                <h1>查询航班</h1>
+            </div>
+              
+            <div id="formwrapper" >
+          
+                <label for="service">服务项目</label>
+                <select id="service" name="service" data-native-menu="false" data-theme="a">
+                    <option value=""></option>
+                    <option value="牵引车">牵引车</option>
+                    <option value="加水车">加水车</option>
+                    <option value="污水车">污水车</option>
+                    <option value="垃圾车">垃圾车</option>
+                    <option value="客梯">客梯</option>
+                </select>   
+                <br/>       
+    
+                <label for="startTime">起始时间</label>
+                <input type="text" data-role="datebox"   id="startTime" name="startTime" />
+                <br/>
+                
+                <label for="endTime">终止时间</label>
+                <input type="text" data-role="datebox"   id="endTime" name="endTime" />
+                <br/>
+                
+                <div class="ui-grid-a">
+                    <div class="ui-block-a" style="margin-left:0px;margin-top:17px;width:90px">
+                        <label for="quantity">使用数量</label>
+                    </div>
+                    <div class="ui-block-b">
+                        <div class="ui-grid-b">
+                            <div class="ui-block-a" style="margin-left:0px;margin-top:5px;width:50px">
+                                <a id="minus"><img src="./images/minus_blue.ico" height="44"/></a>
+                            </div>
+                            <div class="ui-block-b" style="margin-left:0px;width:50px">
+                                <input type="text" name="quantity" id="quantity" data-theme="a">
+                            </div>
+                            <div class="ui-block-c" style="margin-left:6px;margin-top:5px;width:50px">
+                                <a id="plus"><img src="./images/plus_blue.ico" height="44"/></a>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+                <br/>
+                
+                <label for="unit">单位</label>
+                <select id="unit" name="unit" data-native-menu="false" data-theme="a">
+                    <option value=""></option>
+                    <option value="台">台</option>
+                    <option value="件">件</option>
+                    <option value="次">次</option>
+                    <option value="人次">人次</option>
+                    <option value="小时">小时</option>
+                </select>            
+            </div>
+            
+            <div data-role="controlgroup" data-type="horizontal" align="center">
+                <input type="submit" id='submit' data-inline="true" value="提交"  onClick="add()"/>
+                <input type="reset" id='reset' data-inline="true" value="取消" />  
+            </div>
+            
+            <div data-role="popup" id="popupBasic" data-transition='flip' data-position-to='window' data-dismissible="false"> 
+                <form style="padding:10px 20px;">   
+                    <h3>ARE YOU SURE DELETE</h3>   
+                    <button type="submit" data-theme="b">NO</button>
+                    <button type="submit"  id="delete-yes" data-theme="b">YES</button> 
+                </form>  
+            </div> 
+        
+    </div> 
+    
+</div>
+
+
+
+<script type="text/javascript">
+	 $("#deleteButton").bind('click',function(){
+	  var mailbody = document.getElementById("mainbody");
+	  var cell = document.getElementById("delCell");
+	  if(cell!=undefined){
+		 mainbody.removeChild(cell);
+	  } 
+ 	});
+</script>
+
+<script type="text/javascript">
+/*function deleteRow(obj)
+{
+ var rowIndex=obj.parentNode.parentNode.rowIndex;//获得行的索引
+ document.getElementById('mainbody').deleteRow(rowIndex);//删除行
+//deleteRow是js内置的方法;
+}*/
+</script>
+  
+<!--删除时弹出提示框-->
+<script type="text/javascript" language="javascript" >
+ 	$("#delete-yes").bind('click',function(){
+		/*$.ajax({
+   			type: "POST",
+   			url: "http://10.1.39.84:8080/seurat-web/jersey/job/resume/"+id,
+   			success: function(){
+    		window.location.reload()
+   			}
+      });  */  
+	  var mailbody = document.getElementById("mainbody");
+	  var cell = document.getElementById("delCell");
+	  if(cell!=undefined){
+		 mainbody.removeChild(cell);
+ 		}
+   });
+</script>
+
+
+<!--日期控件初始化-->
+<script type="text/javascript" language="javascript" >
+$('input:jqmData(role="datebox")').mobiscroll().datetime({
+		preset: 'datetime', //日期形式 date|datetime|time 
+	    theme: 'android',   
+        display: 'bubble',
+        mode: 'scroller',
+        showNow: true,
+		nowText: "today",
+		showOnFocus: true,
+		dateFormat: "yy-mm-dd HH:mm:ss",
+		dateOrder: "yymmdd",
+		height: 45,
+		width: 100,
+		rows: 3
+});
+</script>
+
+
+<!--计算数量减1-->
+<script type="text/javascript" language="javascript" >
+$("#minus").on("click",(function(){
+	var quantitymin =$("#quantity").val();
+	if(quantitymin == ""){
+		alert("请先填写数量！");
+	}
+	else{
+		var tempmin = parseInt(quantitymin);
+		if(!isNaN(tempmin)) {
+			tempmin -= 1;
+			if(tempmin < 0){
+				tempmin = 0;
+			}
+		} else {
+			tempmin = 0;
+		}
+		$("#quantity").val(tempmin);
+	}
+}));
+</script>
+
+<!--计算数量加1-->
+<script type="text/javascript" language="javascript" >
+$("#plus").on("click",(function(){
+	var quantityplu =$("#quantity").val();
+	if(quantityplu == ""){
+		alert("请先填写数量！");
+	}
+	else{
+		var tempplu = parseInt(quantityplu);
+		if(!isNaN(tempplu)) {
+			tempplu += 1;
+		} else {
+			tempplu = 0;
+		}
+		$("#quantity").val(tempplu);
+	}
+}));
+</script>
+    
+<!--页面初始化赋值-->
+<script type="text/javascript" language="javascript" >
+var g_temp = null;
+$(document).ready(function() {
+	  var date =localStorage.getItem('date');
+	  var flightNumber = localStorage.getItem('flightNumber');
+	  var planeNumber = localStorage.getItem('planeNumber');
+	  var airName = localStorage.getItem('airName');
+	  var planeType = localStorage.getItem('planeType');
+	  
+	  $("#airDate").val(date);
+	  $('#flightNumber').val(flightNumber);
+	  $('#planeNumber').val(planeNumber);
+	  $('#airName').val(airName);
+	  $('#planeType').val(planeType);
+	  
+	  $.getJSON(global_serverAddress + "groundServiceTicket?date="+ date +"&flightNumber="+ flightNumber, function(data) {	
+	  		
+		  	$.each(data.serviceItemList, function(i, item) {
+				
+				var serviceItem = item.serviceItem == null ? "" : item.serviceItem;
+				var startTime = item.startTime == null ? "" : item.startTime;
+				var endTime = item.endTime == null ? "" : item.endTime;
+				var amount = item.amount == null ? "" : item.amount;
+				var unit = item.unit == null ? "" : item.unit;
+				
+				$("#mainbody").append(
+				
+					"<tr class='testTr'><td class='serviceItem'>"+serviceItem+"</td>"+
+					"<td class='startTime'>"+startTime+"</td>"+
+					"<td class='endTime'>"+endTime+"</td>"+
+					"<td class='amount'>"+amount+"</td>"+
+					"<td class='unit'>"+unit+"</td></tr>"
+				
+				);				  
+			});		
+			
+			$(".testTr").bind("click", function() {
+
+				$("#edit").show();
+				$("#delete").show();
+				
+				if(g_temp != null) {
+					g_temp.attr("style", "background-color:#FAFAFA");
+				}
+				g_temp = $(this);
+				g_temp.attr("style", "background-color:#7093DB");
+				
+				var serviceItem = $(this).find(".serviceItem").html();
+				var startTime = $(this).find(".startTime").html();
+				var endTime = $(this).find(".endTime").html();
+				var amount = $(this).find(".amount").html();
+				var unit = $(this).find(".unit").html();
+					
+				window.localStorage.setItem("service", serviceItem);
+				window.localStorage.setItem("startTime", startTime);
+				window.localStorage.setItem("endTime", endTime);
+				window.localStorage.setItem("quantity", amount);
+				window.localStorage.setItem("unit", unit);
+			});			
+	  });
+});
+</script>
+
+<!-- 点击add跳转add_panel -->
+<script type="text/javascript" language="javascript">
+$("#go_add").bind("click", function() {
+	$("add_panel")
+		
+});
+</script>
+
+<!-- 点击add_panel里的提交按钮增加或修改数据 -->
+<script type="text/javascript" language="javascript">
+$("#submit").bind("click", function() {
+	
+	var a = localStorage.getItem('service');
+	var b = localStorage.getItem('startTime');
+	var c = localStorage.getItem('endTime');
+	var d = localStorage.getItem('quantity');
+	var e = localStorage.getItem('unit');
+	
+	var serviceSelect = $('#service').find("option");
+	var i = 0;
+	for(; i < serviceSelect.length; i++) {
+		var option = serviceSelect[i];
+		if(option.value == a) {
+			break;
+		}
+	}
+	$('#service').get(0).selectedIndex = i + 1;
+	$('#startTime').val(b);
+	$('#endTime').val(c);
+	$('#quantity').val(d);
+	$("#unit").attr("value", e);		
+});
+</script>
+
+<!-- 点击edit按钮后把当前选择行的值赋到add_panel里 -->
+<script type="text/javascript" language="javascript">
+$("#edit").bind("click", function() {
+	
+	var a = localStorage.getItem('service');
+	var b = localStorage.getItem('startTime');
+	var c = localStorage.getItem('endTime');
+	var d = localStorage.getItem('quantity');
+	var e = localStorage.getItem('unit');
+	
+	var serviceSelect = $('#service').find("option");
+	var i = 0;
+	for(; i < serviceSelect.length; i++) {
+		var option = serviceSelect[i];
+		if(option.value == a) {
+			break;
+		}
+	}
+	$('#service').get(0).selectedIndex = i + 1;
+	$('#startTime').val(b);
+	$('#endTime').val(c);
+	$('#quantity').val(d);
+	$("#unit").attr("value", e);		
+});
+</script>
+
+<!-- 设置页面的样式和宽度 -->
+<script type="text/javascript" language="javascript">
+$(document).ready(function() {
+	
+	//设置主页面的样式和宽度
+	var selfep = $('#self_edit_page');
+	var window_width = global_windowWidth - 17;
+	selfep.attr("style", "width:window.innerWidth;");
+	
+	//设置修改页面的样式和
+	var addp = $('#add_panel');
+	addp.attr("style", "width:" + global_menuWidth + "px;");
+	
+	$("#edit").hide();
+	$("#delete").hide();
+});
+</script>
+
+
+
+</body>
+</html>

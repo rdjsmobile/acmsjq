@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="jquery.mobile-1.4.3.min.css">
+	<link rel="stylesheet" type="text/css"  href="mobiscroll.custom-2.6.2.min.css">
+	<script src="jquery-1.11.0.js"></script>
+	<script src="jquery.mobile-1.4.3.min.js"></script>
+	<script src="mobiscroll.custom-2.6.2.min.js"></script>
+    <script src="config.js"></script>
+		
+	<link rel="stylesheet" href="jqm-style.css">
+    
+    <script type="text/javascript" language="javascript" >
+    $(document).ready(function () {
+		var date =localStorage.getItem('date');
+		var num =localStorage.getItem('flightNumber');
+		
+		$.getJSON("http://10.1.39.84:8888/acms_service/services/flight/search?limit=15&page=1&date="+ date +"&flightNumber="+ num, function(data) {
+		   
+			$.each(data.flightList, function(i, item) {
+				
+				$("#user_view").append(
+				
+					"<li class='testLi' style='background-color:#e9e9e9;'><div><a data-transition='slide'><div style='float:left;margin-top:47px;'><img align='middle' src=\"./images/airplane_"+item.action+".ico\" /></div>"+
+					"<div style='float:left;margin-left:20px;'><h1 style='color:black'><span class='flightNumberSpan'>"+item.flightNumber+"</span></h1>"+
+					"<p style='color:black'>机号：<span class='planeNumberSpan'>"+item.planeNumber+"</span></p>"+
+					"<p style='color:black'>机型：<span class='planeTypeSpan'>"+item.planeType+"</span></p>"+
+					"<p style='color:black'>航空公司：<span class='airNameSpan'>"+item.airCode+" "+item.airName+"</span></p>"+
+					"<p style='color:black'>起降时间：<span class='timeSpan'>"+item.time+"</span></p>"+
+					"<p style='color:black'>任务性质：<span>"+item.flightNature+"</span></p></div>"+
+					"<div style='float:left;margin-left:550px;margin-top:35px;'><a href='detail_SlidingMenu.html'><img align='left' src='./images/input_tablet.ico'/></a></div>"+
+					"<div style='float:right;margin-right:50px;margin-top:35px;'><img src=\"./images/printer.ico\" height='66'/><div></a></div></li>" //双引号前加\的作用是转义
+				
+				).listview("refresh");
+				  
+			});
+			
+			$('.testLi').bind('click', function() {
+                var key1 = "date";
+                var value1 = $(this).find(".timeSpan").text();
+                var key2 = "flightNumber";
+                var value2 = $(this).find(".flightNumberSpan").text();
+				var key3 = "planeNumber";
+                var value3 = $(this).find(".planeNumberSpan").text();
+                var key4 = "airName";
+                var value4 = $(this).find(".airNameSpan").text().substring(3);
+				var key5 = "planeType";
+                var value5 = $(this).find(".planeTypeSpan").text();
+                setDetail(key1, value1, key2, value2, key3, value3, key4, value4, key5, value5);
+				window.location = "detail_SlidingMenu.html"
+            });
+		});			
+	})
+	</script> 
+
+</head>
+
+
+
+<body>
+
+<div id="pageTwo" >
+	 
+	<div data-role="header" data-theme="a">
+        <h1>航班信息</h1>
+         <a id="a_back" data-role="button" data-rel="back" href="#" class="ui-btn-left" data-icon="back" data-theme="b">Back</a>
+    </div>
+    
+    <div data-role="content" >
+        <ul data-role="listview" data-inset="true" id="user_view" >
+        </ul>
+    </div>
+</div> 
+
+
+<!--localStorage页面跳转存储数据 -->
+<script type="text/javascript" language="javascript" >
+ 	function setDetail(key1,value1,key2,value2,key3,value3,key4,value4,key5,value5){
+		window.localStorage.setItem(key1, value1);
+		window.localStorage.setItem(key2, value2);
+		window.localStorage.setItem(key3, value3);
+		window.localStorage.setItem(key4, value4);
+		window.localStorage.setItem(key5, value5);
+	}
+</script>
+
+
+ 
+</body>
+</html>
