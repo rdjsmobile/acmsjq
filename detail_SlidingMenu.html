@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" href="jquery.mobile-1.4.3.min.css">
+	<link rel="stylesheet" href="jquery.mobile-1.4.3.css">
 	<link rel="stylesheet" type="text/css"  href="mobiscroll.custom-2.6.2.min.css">
 	<script src="jquery-1.11.0.js"></script>
-	<script src="jquery.mobile-1.4.3.min.js"></script>
+	<script src="jquery.mobile-1.4.3.js"></script>
 	<script src="mobiscroll.custom-2.6.2.min.js"></script>
     <script src="config.js"></script>
     
@@ -182,7 +182,7 @@
                 <a id="go_edit" href="#add_panel"><img src="./images/edit.png" height="33"/></a>
             </div>
             <div class="ui-block-c" style="margin-left:-40px;" id="delete">
-                <img id="deleteButton" src="./images/delete.jpg" height="32"/>
+                <a id="go_delete" data-rel="popup" href="#popupBasic"><img id="deleteButton" src="./images/delete.jpg" height="32"/></a>
             </div>
          </div>
          
@@ -202,7 +202,7 @@
         <div data-role="panel" id="add_panel" data-position="right" data-position-fixed="false"  data-display="overlay" data-theme="a" data-flag="add">     
             
             <div data-role="header" data-theme="b" style="margin-top:-16px;margin-left:-16px;margin-right:-16px;">
-                <h1>查询航班</h1>
+                <h1 id="add_menu">查询航班</h1>
             </div>
               
             <div id="formwrapper" >
@@ -258,15 +258,21 @@
             </div>
             
             <div data-role="controlgroup" data-type="horizontal" align="center">
-                <input type="submit" id='submit' data-inline="true" value="提交"  onClick="add()"/>
+               	<input type="submit" id='submit' data-inline="true" value="提交" />
                 <input type="reset" id='reset' data-inline="true" value="取消" />  
             </div>
             
             <div data-role="popup" id="popupBasic" data-transition='flip' data-position-to='window' data-dismissible="false"> 
-                <form style="padding:10px 20px;">   
-                    <h3>ARE YOU SURE DELETE</h3>   
-                    <button type="submit" data-theme="b">NO</button>
-                    <button type="submit"  id="delete-yes" data-theme="b">YES</button> 
+                <form style="padding:30px 40px;">   
+                    <h3>是否确定删除？</h3>   
+                     <div class="ui-grid-b">
+                     <div class="ui-block-a">
+                     	<button type="submit" id="delete-yes" data-theme="b" data-mini="true">确定</button>              	
+                     </div>
+                     <div class="ui-block-b"></div>
+                     <div class="ui-block-c">
+                    	<button type="submit" data-theme="b" data-mini="true">取消</button>
+                     </div>
                 </form>  
             </div> 
         
@@ -274,44 +280,6 @@
     
 </div>
 
-
-
-<script type="text/javascript">
-	 $("#deleteButton").bind('click',function(){
-	  var mailbody = document.getElementById("mainbody");
-	  var cell = document.getElementById("delCell");
-	  if(cell!=undefined){
-		 mainbody.removeChild(cell);
-	  } 
- 	});
-</script>
-
-<script type="text/javascript">
-/*function deleteRow(obj)
-{
- var rowIndex=obj.parentNode.parentNode.rowIndex;//获得行的索引
- document.getElementById('mainbody').deleteRow(rowIndex);//删除行
-//deleteRow是js内置的方法;
-}*/
-</script>
-  
-<!--删除时弹出提示框-->
-<script type="text/javascript" language="javascript" >
- 	$("#delete-yes").bind('click',function(){
-		/*$.ajax({
-   			type: "POST",
-   			url: "http://10.1.39.84:8080/seurat-web/jersey/job/resume/"+id,
-   			success: function(){
-    		window.location.reload()
-   			}
-      });  */  
-	  var mailbody = document.getElementById("mainbody");
-	  var cell = document.getElementById("delCell");
-	  if(cell!=undefined){
-		 mainbody.removeChild(cell);
- 		}
-   });
-</script>
 
 
 <!--日期控件初始化-->
@@ -441,36 +409,72 @@ $(document).ready(function() {
 <!-- 点击add跳转add_panel -->
 <script type="text/javascript" language="javascript">
 $("#go_add").bind("click", function() {
-	$("add_panel")
-		
+	$("#add_panel").attr("data-flag", "add");
+	$("#add_menu").html("添加服务项");
+});
+</script>
+
+<!-- 点击edit跳转add_panel -->
+<script type="text/javascript" language="javascript">
+$("#go_edit").bind("click", function() {
+	$("#add_panel").attr("data-flag", "update");
+	$("#add_menu").html("编辑服务项");	
 });
 </script>
 
 <!-- 点击add_panel里的提交按钮增加或修改数据 -->
 <script type="text/javascript" language="javascript">
-$("#submit").bind("click", function() {
+$("#submit").bind("click", function() {	
+
+	var flag = $("#add_panel").attr("data-flag");
 	
-	var a = localStorage.getItem('service');
-	var b = localStorage.getItem('startTime');
-	var c = localStorage.getItem('endTime');
-	var d = localStorage.getItem('quantity');
-	var e = localStorage.getItem('unit');
+	var date =localStorage.getItem('date');
+	var flightNumber = localStorage.getItem('flightNumber');
+	var serviceItem = "测试车";
+	var amount = 100;
 	
-	var serviceSelect = $('#service').find("option");
-	var i = 0;
-	for(; i < serviceSelect.length; i++) {
-		var option = serviceSelect[i];
-		if(option.value == a) {
-			break;
+	$.ajax({
+		type: "POST",
+		url: global_serverAddress + "groundServiceTicket/" + flag,
+		data: "date=" + date + "&flightNumber=" + flightNumber + "&serviceItem=" + serviceItem + "&amount="+ amount,
+		//捕捉请求异常
+		success: function(data){
+			if(data.success){
+				alert(flag + " successful!");
+			}else{
+				alert(flag + " failed!");
+			} 
+			window.location.reload()  		
+   		},
+		//捕捉网络异常
+		error: function(request, textStatus, errorThrown) {
+			alert("net error!");
+			//alert(request.statusText); // 调用本次AJAX请求时传递的options参数
 		}
-	}
-	$('#service').get(0).selectedIndex = i + 1;
-	$('#startTime').val(b);
-	$('#endTime').val(c);
-	$('#quantity').val(d);
-	$("#unit").attr("value", e);		
+	});
 });
 </script>
+
+  
+<!--点击删除提示框里的确定按钮后删除数据-->
+<script type="text/javascript" language="javascript" >
+$("#delete-yes").bind('click',function(){
+	
+	var date =localStorage.getItem('date');
+	var flightNumber = localStorage.getItem('flightNumber');
+	var serviceItem = "测试车";
+	
+	$.ajax({
+   		type: "POST",
+   		url: global_serverAddress + "groundServiceTicket/delete",
+		data: "date=" + date + "&flightNumber=" + flightNumber + "&serviceItem=" + serviceItem,
+   		success: function(){
+    		window.location.reload()
+   		}
+    });  
+});
+</script>
+
 
 <!-- 点击edit按钮后把当前选择行的值赋到add_panel里 -->
 <script type="text/javascript" language="javascript">
@@ -514,6 +518,36 @@ $(document).ready(function() {
 	$("#edit").hide();
 	$("#delete").hide();
 });
+</script>
+
+
+<!--数据加载的时候添加Loading提示 -->
+<script type="text/javascript" language="javascript">
+$( function() {
+
+    //小圈子外围加矩形的背景
+    $('#').live( 'tap', function() {
+		$.mobile.loadingMessageTextVisible = true;
+		$.mobile.loadingMessageTheme = 'a';
+		$.mobile.showPageLoadingMsg();
+    } );
+    //矩形背景样式为e
+    $('#').live( 'tap', function() {
+		$.mobile.loadingMessageTextVisible = true;
+		$.mobile.loadingMessageTheme = 'e';
+        $.mobile.showPageLoadingMsg();
+    } );
+    //小圈子下面加上文字
+	$('#submit1').bind( 'tap', function() {
+		$.mobile.loadingMessageTextVisible = true;
+        $.mobile.showPageLoadingMsg( 'a', "Loading..." );
+    } );
+    //只有文字，没有小圈子在转
+	$('#').live( 'tap', function() {
+		$.mobile.loadingMessageTextVisible = true;
+        $.mobile.showPageLoadingMsg( 'a', "Please wait...", true );
+    } );
+  } );
 </script>
 
 

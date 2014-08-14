@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" href="jquery.mobile-1.4.3.min.css">
+	<link rel="stylesheet" href="jquery.mobile-1.4.3.css">
 	<link rel="stylesheet" type="text/css"  href="mobiscroll.custom-2.6.2.min.css">
-	<script src="jquery-1.11.0.js"></script>
-	<script src="jquery.mobile-1.4.3.min.js"></script>
+	<script src="jquery-1.8.3.min.js"></script>
+	<script src="jquery.mobile-1.4.3.js"></script>
 	<script src="mobiscroll.custom-2.6.2.min.js"></script>
     <script src="config.js"></script>
 		
@@ -31,24 +31,28 @@
 					"<p style='color:black'>航空公司：<span class='airNameSpan'>"+item.airCode+" "+item.airName+"</span></p>"+
 					"<p style='color:black'>起降时间：<span class='timeSpan'>"+item.time+"</span></p>"+
 					"<p style='color:black'>任务性质：<span>"+item.flightNature+"</span></p></div>"+
-					"<div style='float:left;margin-left:550px;margin-top:35px;'><a href='detail_SlidingMenu.html'><img align='left' src='./images/input_tablet.ico'/></a></div>"+
+					"<div class='testimg' style='float:left;margin-left:550px;margin-top:35px;'><img align='left' src='./images/input_tablet.ico'/></div>"+
 					"<div style='float:right;margin-right:50px;margin-top:35px;'><img src=\"./images/printer.ico\" height='66'/><div></a></div></li>" //双引号前加\的作用是转义
 				
 				).listview("refresh");
 				  
 			});
 			
-			$('.testLi').bind('click', function() {
+			$('.testimg').bind('click', function() {
+				$.mobile.loadingMessageTextVisible = true;
+        		$.mobile.showPageLoadingMsg( 'a', "Loading..." );
+		
+				var li = $(this).parent();
                 var key1 = "date";
-                var value1 = $(this).find(".timeSpan").text();
+                var value1 = li.find(".timeSpan").text();
                 var key2 = "flightNumber";
-                var value2 = $(this).find(".flightNumberSpan").text();
+                var value2 = li.find(".flightNumberSpan").text();
 				var key3 = "planeNumber";
-                var value3 = $(this).find(".planeNumberSpan").text();
+                var value3 = li.find(".planeNumberSpan").text();
                 var key4 = "airName";
-                var value4 = $(this).find(".airNameSpan").text().substring(3);
+                var value4 = li.find(".airNameSpan").text().substring(3);
 				var key5 = "planeType";
-                var value5 = $(this).find(".planeTypeSpan").text();
+                var value5 = li.find(".planeTypeSpan").text();
                 setDetail(key1, value1, key2, value2, key3, value3, key4, value4, key5, value5);
 				window.location = "detail_SlidingMenu.html"
             });
@@ -88,6 +92,33 @@
 </script>
 
 
- 
+ <!--数据加载的时候添加Loading提示 -->
+<script type="text/javascript" language="javascript">
+$( function() {
+
+    //小圈子外围加矩形的背景
+    $('#').live( 'tap', function() {
+		$.mobile.loadingMessageTextVisible = true;
+		$.mobile.loadingMessageTheme = 'a';
+		$.mobile.showPageLoadingMsg();
+    } );
+    //矩形背景样式为e
+    $('#').live( 'tap', function() {
+		$.mobile.loadingMessageTextVisible = true;
+		$.mobile.loadingMessageTheme = 'e';
+        $.mobile.showPageLoadingMsg();
+    } );
+    //小圈子下面加上文字
+	$('').bind( 'click', function() {
+		$.mobile.loadingMessageTextVisible = true;
+        $.mobile.showPageLoadingMsg( 'a', "Loading..." );
+    } );
+    //只有文字，没有小圈子在转
+	$('#').live( 'tap', function() {
+		$.mobile.loadingMessageTextVisible = true;
+        $.mobile.showPageLoadingMsg( 'a', "Please wait...", true );
+    } );
+  } );
+</script>
 </body>
 </html>

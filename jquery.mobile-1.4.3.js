@@ -691,6 +691,14 @@ $.ui.plugin = {
 				page.css( "min-height", height - ( pageOuterHeight - pageHeight ) );
 			}
 		},
+		
+		// DEPRECATED
+		// Turn on/off page loading message. Theme doubles as an object argument
+		// with the following shape: { theme: '', text: '', html: '', textVisible: '' }
+		// NOTE that the $.mobile.loading* settings and params past the first are deprecated
+		showPageLoadingMsg: function( theme, msgText, textonly ) {
+			$.mobile.loading( 'show', theme, msgText, textonly );
+		},
 
 		loading: function() {
 			// If this is the first call to this function, instantiate a loader widget

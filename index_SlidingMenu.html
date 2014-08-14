@@ -4,10 +4,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="stylesheet" href="jquery.mobile-1.4.3.min.css">
+	<link rel="stylesheet" href="jquery.mobile-1.4.3.css">
 	<link rel="stylesheet" type="text/css"  href="mobiscroll.custom-2.6.2.min.css">
-	<script src="jquery-1.11.0.js"></script>
-	<script src="jquery.mobile-1.4.3.min.js"></script>
+	<script src="jquery-1.8.3.min.js"></script>
+	<script src="jquery.mobile-1.4.3.js"></script>
 	<script src="mobiscroll.custom-2.6.2.min.js"></script>
     <script src="config.js"></script>
 		
@@ -91,9 +91,8 @@
 	var date =$("#airDateInput1").val();
 	var num =$("#airNum").val();
 	window.localStorage.setItem('date', date);
-	window.localStorage.setItem('flightNumber', num);
+	window.localStorage.setItem('flightNumber', '3U8628');
 	window.location = "air_list_SlidingMenu.html"
-	$.ajax()
 }</script>
 
 <!--为航班日期设置初始值 -->
@@ -163,7 +162,7 @@ $("#beforeDay1").on("click",(function(){
 $(document).ready(function() {
 	//设置查询框的宽度
 	var searcha = $('#search_air');
-	searcha.attr("style", "width:" + global_menuWidth + "px;");
+	searcha.attr("style", "float:right;width:" + global_menuWidth + "px;");
 	
 	//设置导航栏的样式和宽度
 	var menuw = $('#menu_welcome');
@@ -183,6 +182,35 @@ $(document).on("pageinit","#pageone",function(){
     $(this).hide();
   });                       
 });
+</script>
+
+<!--数据加载的时候添加Loading提示 -->
+<script type="text/javascript" language="javascript">
+$( function() {
+
+    //小圈子外围加矩形的背景
+    $('#').live( 'tap', function() {
+		$.mobile.loadingMessageTextVisible = true;
+		$.mobile.loadingMessageTheme = 'a';
+		$.mobile.showPageLoadingMsg();
+    } );
+    //矩形背景样式为e
+    $('#').live( 'tap', function() {
+		$.mobile.loadingMessageTextVisible = true;
+		$.mobile.loadingMessageTheme = 'e';
+        $.mobile.showPageLoadingMsg();
+    } );
+    //小圈子下面加上文字
+	$('#sum').bind( 'tap', function() {
+		$.mobile.loadingMessageTextVisible = true;
+        $.mobile.showPageLoadingMsg( 'a', "Loading..." );
+    } );
+    //只有文字，没有小圈子在转
+	$('#').live( 'tap', function() {
+		$.mobile.loadingMessageTextVisible = true;
+        $.mobile.showPageLoadingMsg( 'a', "Please wait...", true );
+    } );
+  } );
 </script>
 
 
